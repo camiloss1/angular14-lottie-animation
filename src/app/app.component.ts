@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, NgZone } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  NgZone,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 
@@ -6,21 +11,28 @@ import { AnimationOptions } from 'ngx-lottie';
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  anim: any;
+  visible = false;
+  private animationItem: AnimationItem;
   animationSpeed: number = 1;
   options: AnimationOptions = {
     path: '/assets/data.json',
+    loop: false,
   };
-
+  options2: AnimationOptions = {
+    path: '/assets/data2.json',
+    loop: true,
+  };
+  constructor(private ref: ChangeDetectorRef) {}
   animationCreated(animationItem: AnimationItem): void {
-    this.anim = animationItem;
+    this.animationItem = animationItem;
   }
 
   onLoopComplete(): void {
+    this.visible = true;
+    this.ref.detectChanges();
     NgZone.assertNotInAngularZone();
-    console.log(NgZone.isInAngularZone()); // false
-    this.anim.stop();
   }
 }

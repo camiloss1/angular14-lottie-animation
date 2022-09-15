@@ -1,5 +1,13 @@
-<ng-lottie
-  [options]="options"
-  (animationCreated)="animationCreated($event)"
-  (loopComplete)="onLoopComplete()"
-></ng-lottie>
+<div [hidden]="visible">
+  <ng-lottie
+    [options]="options"
+    (animationCreated)="animationCreated($event)"
+    (complete)="onLoopComplete()"
+  ></ng-lottie>
+</div>
+<div [hidden]="!visible">
+  <ng-lottie
+    [options]="options2"
+    (animationCreated)="animationCreated($event)"
+  ></ng-lottie>
+</div>
