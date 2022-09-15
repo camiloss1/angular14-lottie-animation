@@ -1,11 +1,11 @@
-<div [hidden]="visible">
+<div [hidden]="visibleintro">
   <ng-lottie
     [options]="options"
     (animationCreated)="animationCreated($event)"
     (complete)="onLoopComplete()"
   ></ng-lottie>
 </div>
-<div [hidden]="!visible">
+<div [hidden]="visiblecoin">
   <ng-lottie
     [options]="options2"
     (animationCreated)="animationCreated($event)"

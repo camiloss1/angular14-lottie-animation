@@ -14,7 +14,8 @@ import { AnimationOptions } from 'ngx-lottie';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  visible = false;
+  visibleintro = false;
+  visiblecoin = true;
   private animationItem: AnimationItem;
   animationSpeed: number = 1;
   options: AnimationOptions = {
@@ -31,7 +32,8 @@ export class AppComponent {
   }
 
   onLoopComplete(): void {
-    this.visible = true;
+    this.visibleintro = true;
+    this.visiblecoin = false;
     this.ref.detectChanges();
     NgZone.assertNotInAngularZone();
   }
